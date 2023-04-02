@@ -3,7 +3,7 @@ from pickletools import read_bytes1
 from wsgiref.handlers import read_environ
 from datetime import datetime
 
-pathOfDeliveriesFile="/home/raveena/Desktop/pythonIPLproject/deliveries.csv"
+pathOfDeliveriesFile="/home/raveena/Desktop/iplProject/deliveries.csv"
 DeliveriesFile=open(pathOfDeliveriesFile, newline='')
 readDeliveriesFile =csv.reader(DeliveriesFile)
 headerInDeliveriesFile=next(readDeliveriesFile)
@@ -35,7 +35,7 @@ for row in readDeliveriesFile:
 
 
 
-pathOfMatchesFile="/home/raveena/Desktop/pythonIPLproject/matches.csv"
+pathOfMatchesFile="/home/raveena/Desktop/iplProject/matches.csv"
 matchesFile=open(pathOfMatchesFile, newline='')
 readMatchesFile =csv.reader(matchesFile)
 headerInMatchesFile=next(readMatchesFile)
