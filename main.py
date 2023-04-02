@@ -7,7 +7,7 @@ pathOfDeliveriesFile="/home/raveena/Desktop/iplProject/deliveries.csv"
 DeliveriesFile=open(pathOfDeliveriesFile, newline='')
 readDeliveriesFile =csv.reader(DeliveriesFile)
 headerInDeliveriesFile=next(readDeliveriesFile)
-data=[]
+dataofDeliveries=[]
 for row in readDeliveriesFile:
   match_id=int(row[0])
   inning=int(row[1])
@@ -31,7 +31,7 @@ for row in readDeliveriesFile:
   dismissal_kind=str(row[19])
   fielder=str(row[20])
 
-  data.append([match_id, inning, batting_team, bowling_team, over, ball, batsman, non_striker, bowler, is_super_over, wide_runs, bye_runs, legbye_runs, noball_runs, penalty_runs, batsman_runs, extra_runs, total_runs, player_dismissed, dismissal_kind, fielder])
+  dataofDeliveries.append([match_id, inning, batting_team, bowling_team, over, ball, batsman, non_striker, bowler, is_super_over, wide_runs, bye_runs, legbye_runs, noball_runs, penalty_runs, batsman_runs, extra_runs, total_runs, player_dismissed, dismissal_kind, fielder])
 
 
 
@@ -75,6 +75,41 @@ def numberOfMatchesPlayedPerYear():
        yearswithTheirCount[yearIndex]=1
  print(yearswithTheirCount)    
 
+#numberOfMatchesPlayedPerYear()
 
-numberOfMatchesPlayedPerYear()
+def numberOfMatchesWonByAllTeamsOverAllTheYears():
+  teamsAndItsWonCount={}
+  for data in dataOfMatches:
+    lines=[line for line in data]
+    wonTeamNames=lines[10]
+    if wonTeamNames in teamsAndItsWonCount.keys():
+       teamsAndItsWonCount[wonTeamNames]+=1
+    else:
+       teamsAndItsWonCount[wonTeamNames]=1
+  print(teamsAndItsWonCount) 
+
+#numberOfMatchesWonByAllTeamsOverAllTheYears()
+
+def getExtraRunsConcededPerTeamIn2016():
+    ids=[]
+    for data in dataOfMatches:
+     lines=[line for line in data]
+     years=lines[1]
+     if years==2016:
+      ids.append(lines[0])
+    extraRunsConcededPerYear={}
+    for data in dataofDeliveries:
+     lines=[line for line in data]
+     idsInDeliveries=lines[0]
+     bowlingTeam=lines[3]
+     extraRuns=lines[16]
+     if idsInDeliveries in ids:
+        if bowlingTeam in extraRunsConcededPerYear.keys():
+          extraRunsConcededPerYear[bowlingTeam]+=extraRuns
+        else :
+          extraRunsConcededPerYear[bowlingTeam]=extraRuns
+    print(extraRunsConcededPerYear)           
+
+getExtraRunsConcededPerTeamIn2016()    
+
 
