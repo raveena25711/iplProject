@@ -1,0 +1,1 @@
+[('RN ten Doeschate', '3.43'), ('J Yadav', '4.14'), ('V Kohli', '5.45'), ('R Ashwin', '5.72'), ('S Nadeem', '5.86')]

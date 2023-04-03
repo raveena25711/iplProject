@@ -73,7 +73,10 @@ def numberOfMatchesPlayedPerYear():
        yearswithTheirCount[yearIndex]+=1
     else:
        yearswithTheirCount[yearIndex]=1
- print(yearswithTheirCount)    
+ print(yearswithTheirCount) 
+ with open("outputNumberOfMatchesPlayedPerYear..txt", 'wt') as f:
+  print(yearswithTheirCount, file=f)
+
 
 numberOfMatchesPlayedPerYear()
 
@@ -86,7 +89,11 @@ def numberOfMatchesWonByAllTeamsOverAllTheYears():
        teamsAndItsWonCount[wonTeamNames]+=1
     else:
        teamsAndItsWonCount[wonTeamNames]=1
-  print(teamsAndItsWonCount) 
+  print(teamsAndItsWonCount)
+  with open("outputNumberOfMatchesWonByAllTeamsOverAllTheYears..txt", 'wt') as f:
+   print(teamsAndItsWonCount, file=f)
+  
+  
 
 numberOfMatchesWonByAllTeamsOverAllTheYears()
 
@@ -107,8 +114,10 @@ def getExtraRunsConcededPerTeamIn2016():
         if bowlingTeam in extraRunsConcededPerYear.keys():
           extraRunsConcededPerYear[bowlingTeam]+=extraRuns
         else :
-          extraRunsConcededPerYear[bowlingTeam]=extraRuns
-    print(extraRunsConcededPerYear)           
+          extraRunsConcededPerYear[bowlingTeam]=extraRuns 
+    print(extraRunsConcededPerYear)       
+    with open("outputExtraRunsConcededPerTeamIn2016..txt", 'wt') as f:
+     print(extraRunsConcededPerYear, file=f)         
 
 getExtraRunsConcededPerTeamIn2016()    
 
@@ -148,11 +157,15 @@ def topEconomicalBowlersIn2015():
         trim="%.2f" % economyRate
         economy[key]=trim 
     result=sorted(economy.items(), key=lambda kv:float(kv[1]))
+    economicalBowlers=[]
     i=0
     while i<5:
-      topEconomicalBowler=result[i]
-      i+=1
-      print(topEconomicalBowler)
+       economicalBowlers.append(result[i])
+       i+=1
+    print(economicalBowlers)  
+    with open("outputTopEconomicalBowlersIn2015..txt", 'wt') as f:
+     print(economicalBowlers, file=f)
+    
 
 topEconomicalBowlersIn2015()    
 
@@ -165,5 +178,7 @@ def getWinnerTeamNamesIn2017():
      winners=lines[10]
      if years==2017:
        teamNames.add(winners)
-    print(teamNames)   
+    print(teamNames)
+    with open("outputWinnerTeamNamesIn2017..txt", 'wt') as f:
+     print(teamNames, file=f)      
 getWinnerTeamNamesIn2017()      

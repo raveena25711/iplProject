@@ -1,0 +1,1 @@
+{'Kolkata Knight Riders', 'Mumbai Indians', 'Kings XI Punjab', 'Rising Pune Supergiant', 'Royal Challengers Bangalore', 'Delhi Daredevils', 'Sunrisers Hyderabad', 'Gujarat Lions'}
