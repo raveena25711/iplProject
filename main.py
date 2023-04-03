@@ -153,9 +153,17 @@ def topEconomicalBowlersIn2015():
       topEconomicalBowler=result[i]
       i+=1
       print(topEconomicalBowler)
-   
-      
 
 topEconomicalBowlersIn2015()    
 
 
+def getWinnerTeamNamesIn2017():
+    teamNames=set()
+    for data in dataOfMatches:
+     lines=[line for line in data]
+     years=lines[1]
+     winners=lines[10]
+     if years==2017:
+       teamNames.add(winners)
+    print(teamNames)   
+getWinnerTeamNamesIn2017()      
