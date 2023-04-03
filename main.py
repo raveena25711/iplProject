@@ -3,6 +3,7 @@ from pickletools import read_bytes1
 from wsgiref.handlers import read_environ
 from datetime import datetime
 
+
 pathOfDeliveriesFile="/home/raveena/Desktop/iplProject/deliveries.csv"
 DeliveriesFile=open(pathOfDeliveriesFile, newline='')
 readDeliveriesFile =csv.reader(DeliveriesFile)
@@ -39,7 +40,6 @@ pathOfMatchesFile="/home/raveena/Desktop/iplProject/matches.csv"
 matchesFile=open(pathOfMatchesFile, newline='')
 readMatchesFile =csv.reader(matchesFile)
 headerInMatchesFile=next(readMatchesFile)
-#print(headerInMatchesFile)
 dataOfMatches=[]
 for row in readMatchesFile:
   id=int(row[0])
@@ -75,7 +75,7 @@ def numberOfMatchesPlayedPerYear():
        yearswithTheirCount[yearIndex]=1
  print(yearswithTheirCount)    
 
-#numberOfMatchesPlayedPerYear()
+numberOfMatchesPlayedPerYear()
 
 def numberOfMatchesWonByAllTeamsOverAllTheYears():
   teamsAndItsWonCount={}
@@ -88,7 +88,7 @@ def numberOfMatchesWonByAllTeamsOverAllTheYears():
        teamsAndItsWonCount[wonTeamNames]=1
   print(teamsAndItsWonCount) 
 
-#numberOfMatchesWonByAllTeamsOverAllTheYears()
+numberOfMatchesWonByAllTeamsOverAllTheYears()
 
 def getExtraRunsConcededPerTeamIn2016():
     ids=[]
@@ -111,5 +111,51 @@ def getExtraRunsConcededPerTeamIn2016():
     print(extraRunsConcededPerYear)           
 
 getExtraRunsConcededPerTeamIn2016()    
+
+def topEconomicalBowlersIn2015():
+    ids=[]
+    for data in dataOfMatches:
+     lines=[line for line in data]
+     years=lines[1]
+     if years==2015:
+      ids.append(lines[0]) 
+    totalBalls={}  
+    for data in dataofDeliveries:
+     lines=[line for line in data]
+     idsInDeliveries=lines[0]
+     bowlerr=str(lines[8])
+     if idsInDeliveries in ids:
+       if bowlerr in totalBalls.keys():
+        totalBalls[bowlerr]+=1
+       else:
+        totalBalls[bowlerr]=1 
+    totalRuns={}  
+    for data in dataofDeliveries:
+      lines=[line for line in data]
+      idsInDeliveries=lines[0]
+      runs=lines[17]
+      bowler=lines[8]
+      if idsInDeliveries in ids:
+       if bowler in totalRuns.keys():
+        totalRuns[bowler]+=runs
+       else:
+        totalRuns[bowler]=runs
+    economy={}
+    for key in totalBalls.keys():
+        balls =float(totalBalls.get(key))
+        runs=float(totalRuns.get(key))
+        economyRate = runs / (balls / 6);
+        trim="%.2f" % economyRate
+        economy[key]=trim 
+    result=sorted(economy.items(), key=lambda kv:float(kv[1]))
+    i=0
+    while i<5:
+      topEconomicalBowler=result[i]
+      i+=1
+      print(topEconomicalBowler)
+   
+      
+
+topEconomicalBowlersIn2015()    
 
 
